@@ -7,6 +7,7 @@ defmodule Support.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Support.CurrentUser
   end
 
   pipeline :api do
@@ -17,9 +18,16 @@ defmodule Support.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/hello/:name", PageController, :hello
+
     get "/register", RegistrationController, :new
     post "/register", RegistrationController, :create
-    get "/hello/:name", PageController, :hello
+
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/login", SessionController, :delete
+
+    resources "/issues", IssueController
   end
 
   # Other scopes may use custom stacks.

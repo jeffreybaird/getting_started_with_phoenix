@@ -1,0 +1,23 @@
+<h2>Show issue</h2>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @issue.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @issue.description %>
+  </li>
+
+  <li>
+    <strong>Closed:</strong>
+    <%= @issue.closed %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: issue_path(@conn, :edit, @issue) %>
+<%= link "Back", to: issue_path(@conn, :index) %>

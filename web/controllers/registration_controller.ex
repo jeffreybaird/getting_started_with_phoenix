@@ -1,6 +1,9 @@
 defmodule Support.RegistrationController do
   use Support.Web, :controller
+
   alias Support.User
+
+  plug :scrub_params, "user" when action in [:create]
 
   def new(conn, _params) do
     changeset = User.changeset(%User{})
